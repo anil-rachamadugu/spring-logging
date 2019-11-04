@@ -1,0 +1,55 @@
+Configuration:
+  status: warn
+  name: YAMLConfigTest
+  properties:
+    property:
+      name: filename
+      value: logs/spring-logging.log
+  thresholdFilter:
+    level: debug
+  appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+    RollingFile:
+      name: RollingFile
+      fileName: ${filename}
+      filePattern: ${filename}.%d{yyyy-MM-dd-hh-mm}.gz
+      JsonLayout:
+        complete: false
+        compact: true
+        eventEol: true
+        properties: true
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 100 MB
+      DefaultRollOverStrategy:
+        max: 100
+ 
+  Loggers:
+    logger:
+      -
+        name: org.springframework
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+      -
+        name: com.demo.springlogging
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: RollingFile
+    Root:
+      level: info
+      AppenderRef:
+        ref: RollingFile
+    Root:
+      level: error
+      AppenderRef:
+        ref: RollingFile
+    Root:
+      level: debug
+      AppenderRef:
+        ref: STDOUT
