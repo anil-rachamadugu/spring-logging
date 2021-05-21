@@ -14,7 +14,7 @@ public class SpringLoggingController {
 	@GetMapping("/test")
 	public String test() {
 		System.out.println("In controller");
-		logger.debug("In Controller test() : called");
+		logger.debug("In Controller test(debug) : called");
 		logger.info("In Controller test(info) : called");
 		logger.error("In Controller test(error) : called");
 		return "Helloo ... !";
