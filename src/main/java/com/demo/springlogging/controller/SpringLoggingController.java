@@ -15,7 +15,8 @@ public class SpringLoggingController {
 	public String test() {
 		System.out.println("In controller");
 		logger.debug("In Controller test() : called");
-		logger.info("In Controller test(info ) : called");
+		logger.info("In Controller test(info) : called");
+		logger.error("In Controller test(error) : called");
 		return "Helloo ... !";
 	}
 
